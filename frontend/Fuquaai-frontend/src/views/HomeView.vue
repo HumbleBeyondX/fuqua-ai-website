@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
 // Example data for news items
 const newsItems = ref([
@@ -268,6 +268,39 @@ const getInitials = (name: string) => {
   const parts = name.split(' ');
   return parts.map(part => part.charAt(0)).join('');
 };
+
+// Typing animation for subtitle
+const subtitleText = "Preparing the next generation of leaders with the skills, insights, and frameworks to create value for business and society in an AI-driven world.";
+const displayedSubtitle = ref('');
+const isTyping = ref(true);
+
+onMounted(() => {
+  startTypingAnimation();
+});
+
+const startTypingAnimation = () => {
+  let currentIndex = 0;
+  displayedSubtitle.value = '';
+  isTyping.value = true;
+  
+  const typeNextChar = () => {
+    if (currentIndex < subtitleText.length) {
+      displayedSubtitle.value += subtitleText.charAt(currentIndex);
+      currentIndex++;
+      setTimeout(typeNextChar, 50); // Speed of typing
+    } else {
+      isTyping.value = false;
+      setTimeout(() => {
+        // Pause before restarting animation
+        setTimeout(() => {
+          startTypingAnimation();
+        }, 3000); // Wait 3 seconds before restarting
+      }, 1000);
+    }
+  };
+  
+  typeNextChar();
+};
 </script>
 
 <template>
@@ -276,7 +309,7 @@ const getInitials = (name: string) => {
     <section class="hero-section">
       <div class="hero-content">
         <h1 class="hero-title">AI@Fuqua</h1>
-        <p class="hero-subtitle">Preparing the next generation of leaders with the skills, insights, and frameworks to create value for business and society in an AI-driven world.</p>
+        <p class="hero-subtitle">{{ displayedSubtitle }}</p>
         <el-button type="primary" size="large" class="learn-more-btn" @click="scrollToSection('about')">Learn More</el-button>
       </div>
     </section>
@@ -455,11 +488,16 @@ const getInitials = (name: string) => {
 }
 
 .hero-subtitle {
-  font-size: 1rem;
+  font-size: 1.1rem;
   margin-bottom: 2.5rem;
-  line-height: 1.5;
+  line-height: 1.6;
   font-weight: 400;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Montserrat', 'Roboto', 'Open Sans', sans-serif;
+  letter-spacing: 0.3px;
+  min-height: 80px; /* Reserve space for text to prevent layout shift */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .learn-more-btn {
