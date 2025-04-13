@@ -111,7 +111,7 @@ const scrollToSection = (sectionId: string) => {
     <!-- Hero Section with full-width background image -->
     <section class="hero-section">
       <div class="hero-content">
-        <h1 class="hero-title">AI@Fuqua Initiative</h1>
+        <h1 class="hero-title">AI@Fuqua</h1>
         <p class="hero-subtitle">Preparing the next generation of leaders with the skills, insights, and frameworks to create value for business and society in an AI-driven world.</p>
         <el-button type="primary" size="large" class="learn-more-btn" @click="scrollToSection('about')">Learn More</el-button>
       </div>
@@ -126,7 +126,7 @@ const scrollToSection = (sectionId: string) => {
         <!-- News cards grid -->
         <div class="news-grid">
           <el-row :gutter="30">
-            <el-col :xs="24" :sm="12" :md="12" :lg="6" v-for="(item, index) in newsItems" :key="index">
+            <el-col :span="24" :xs="24" :sm="12" :md="12" :lg="6" v-for="(item, index) in newsItems" :key="index">
               <el-card class="news-card" shadow="hover">
                 <div class="news-card-content">
                   <h3 class="news-title">{{ item.title }}</h3>
@@ -148,7 +148,7 @@ const scrollToSection = (sectionId: string) => {
         <h2 class="section-title">Fuqua Researchers are Driving Applications of AI to all Areas of Business</h2>
         
         <el-row :gutter="30" class="research-grid">
-          <el-col :xs="24" :sm="24" :md="12" :lg="8" v-for="(area, index) in researchAreas" :key="index" class="research-col">
+          <el-col :span="24" :xs="24" :sm="24" :md="12" :lg="8" v-for="(area, index) in researchAreas" :key="index" class="research-col">
             <div class="research-area-card">
               <h3 class="research-area-title">{{ area.title }}</h3>
               <p class="research-area-content">{{ area.description }}</p>
@@ -166,7 +166,7 @@ const scrollToSection = (sectionId: string) => {
         
         <div class="ai-approach-grid">
           <el-row :gutter="30">
-            <el-col :xs="24" :sm="24" :md="8" v-for="(category, index) in aiApproachCategories" :key="index" class="approach-col">
+            <el-col :span="24" :xs="24" :sm="24" :md="8" v-for="(category, index) in aiApproachCategories" :key="index" class="approach-col">
               <div class="ai-approach-card">
                 <h3 class="ai-approach-title">{{ category.title }}</h3>
                 <ul class="ai-approach-list">
@@ -186,7 +186,7 @@ const scrollToSection = (sectionId: string) => {
         
         <div class="faculty-grid">
           <el-row :gutter="30">
-            <el-col :xs="24" :sm="12" :md="8" :lg="6" v-for="(faculty, index) in facultyExperts" :key="index" class="faculty-col">
+            <el-col :span="24" :xs="24" :sm="12" :md="8" :lg="6" v-for="(faculty, index) in facultyExperts" :key="index" class="faculty-col">
               <div class="faculty-card">
                 <h3 class="faculty-name">{{ faculty.name }}</h3>
                 <p class="faculty-expertise">{{ faculty.expertise }}</p>
@@ -203,6 +203,11 @@ const scrollToSection = (sectionId: string) => {
 .home-container {
   width: 100%;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 /* Hero section styles */
@@ -221,6 +226,7 @@ const scrollToSection = (sectionId: string) => {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  width: 100%;
   
   &::before {
     content: '';
@@ -270,7 +276,7 @@ const scrollToSection = (sectionId: string) => {
 .hero-subtitle {
   font-size: 1rem;
   margin-bottom: 2.5rem;
-  line-height: 1.3;
+  line-height: 1.5;
   font-weight: 400;
   font-family: 'Helvetica Neue', Arial, sans-serif;
 }

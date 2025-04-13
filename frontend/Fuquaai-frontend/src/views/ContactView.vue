@@ -102,7 +102,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Location, Phone, Message, Linkedin, Twitter, Youtube } from '@element-plus/icons-vue'
+import { Location, Phone, Message} from '@element-plus/icons-vue'
 import type { FormInstance, FormRules } from 'element-plus'
 
 const contactForm = ref<FormInstance>()

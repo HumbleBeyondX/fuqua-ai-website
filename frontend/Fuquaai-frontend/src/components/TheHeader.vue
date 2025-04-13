@@ -3,7 +3,7 @@
     <div class="header-container">
       <div class="logo-container">
         <router-link to="/">
-          <img src="/src/assets/images/icon.png" alt="Fuqua AI Initiative" class="site-logo">
+          <img src="/src/assets/images/icon.png" alt="Fuqua AI" class="site-logo">
           <span class="site-title">AI@Fuqua</span>
         </router-link>
       </div>
@@ -43,28 +43,42 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+  width: 100%;
+  left: 0;
+  right: 0;
 }
 
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0.8rem 2rem;
+  padding: 0.5rem 1.5rem;
+  box-sizing: border-box;
 }
 
 .logo-container {
+  margin-right: 1rem;
+  
   a {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: #012169; /* Duke blue */
+    padding: 0.6rem 1rem;
+    border-radius: 4px;
+    transition: all 0.25s ease;
+    
+    &:hover {
+      background-color: rgba(120, 120, 120, 0.1); /* Same as nav items */
+    }
   }
 }
 
 .site-logo {
-  height: 40px;
+  height: 38px;
   margin-right: 10px;
 }
 
@@ -90,6 +104,7 @@
   margin-left: 0.8rem;
   display: flex;
   align-items: center;
+  font-weight: 800;
 }
 
 .nav-link {
@@ -105,7 +120,7 @@
   
   &:hover {
     color: #012169; /* Duke blue */
-    background-color: rgba(120, 120, 120, 0.25); 
+    background-color: rgba(120, 120, 120, 0.1); 
   }
   
   &.router-link-active {
@@ -130,15 +145,25 @@
   .header-container {
     flex-direction: column;
     padding: 1rem;
+    width: 100%;
   }
   
   .logo-container {
     margin-bottom: 1rem;
+    margin-right: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    
+    a {
+      padding: 0.5rem 1rem;
+    }
   }
   
   .nav-list {
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
   }
   
   .nav-item {
