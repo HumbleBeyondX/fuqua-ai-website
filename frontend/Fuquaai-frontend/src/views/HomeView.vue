@@ -1,27 +1,62 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted, computed } from 'vue';
 
 // Example data for news items
 const newsItems = ref([
   {
     title: 'OpenAI and Duke Launch New MetaScience Initiative',
     content: 'Professor Ronnie Chatterji Appointed First Chief Economist of OpenAI.',
-    date: 'June 2023'
+    date: 'June 2023',
+    url: 'https://www.nytimes.com/2024/10/22/technology/openai-chief-economist.html',
+    source: 'The New York Times',
+    summary: 'OpenAI hires former White House official Aaron "Ronnie" Chatterji, a Duke University professor, as its chief economist. His role will involve economic strategies for AI infrastructure and investment.',
+    mediaType: 'image',
+    mediaSrc: 'https://static01.nyt.com/images/2024/10/21/multimedia/OPENAI-ECONOMIST-1-hzfg/OPENAI-ECONOMIST-1-hzfg-superJumbo.jpg?quality=75&auto=webp',
+    mediaAlt: 'Aaron "Ronnie" Chatterji, Duke University professor appointed as OpenAI chief economist'
   },
   {
     title: 'Duke University Launches Society-Centered AI Initiative',
     content: 'Including Fuqua Faculty and Amazon Scholar Alex Belloni.',
-    date: 'May 2023'
+    date: 'May 2023',
+    url: 'https://scai.duke.edu/',
+    source: 'Duke University',
+    summary: 'The Society-Centered AI Initiative (SCAI) at Duke brings together scholars to explore the co-evolution of AI and human behavior, addressing critical questions about the societal impacts of AI.',
+    mediaType: 'image',
+    mediaSrc: 'https://scai.duke.edu/sites/scai.duke.edu/files/styles/4_1_landscape_100_width_1140x285/public/images/011719b_brodhead071.jpg?h=07813f53&itok=7O4A4klC', 
+    mediaAlt: 'Society-Centered AI Initiative at Duke University logo'
   },
   {
     title: 'Jiaming Xu Research on Deep Learning',
     content: 'Jiaming Xu researches and teaches deep learning and its business applications, supported by an NSF Career Award.',
-    date: 'April 2023'
+    date: 'April 2023',
+    url: 'https://www.nsf.gov/awardsearch/showAward?AWD_ID=2144593&HistoricalAwards=false',
+    source: 'Duke Scholars',
+    summary: 'Jiaming Xu, Associate Professor in Decision Sciences at Fuqua, focuses on machine learning and networks, developing methodologies for data inference to enable decision-making at scale.',
+    mediaType: 'image',
+    mediaSrc: '',
+    mediaAlt: 'Duke Scholars logo'
   },
   {
     title: 'Net-Zero Analytics',
     content: 'David Brown shares how Net-Zero Analytics can accelerate the climate transition.',
-    date: 'March 2023'
+    date: 'March 2023',
+    url: 'https://www.youtube.com/watch?v=_dic12lrygg',
+    source: 'YouTube',
+    summary: 'A video presentation on how AI and advanced analytics can support climate initiatives and help businesses transition to sustainable practices through data-driven insights.',
+    mediaType: 'video',
+    mediaSrc: 'https://www.youtube.com/embed/_dic12lrygg',
+    mediaAlt: 'David Brown discussing Net-Zero Analytics'
+  },
+  {
+    title: 'Fuqua AI Platform Launch',
+    content: 'Fuqua Researchers Launch Scientifiq.AI AI-Driven Platform to Accelerate the Translation of Science.',
+    date: 'March 2023',
+    url: 'https://scientifiq.ai/',
+    source: 'Fuqua AI Research',
+    summary: 'Fuqua AI Research',
+    mediaType: 'image',
+    mediaSrc: 'https://fuqua.ai/wp-content/uploads/2025/03/screenshot-2025-03-29-at-10.26.44e280afam.png',
+    mediaAlt: 'Fuqua AI Research logo'
   }
 ]);
 
@@ -247,6 +282,36 @@ const facultyExperts = ref([
 
 ]);
 
+// For news carousel
+const visibleNewsIndex = ref(0);
+const newsPerView = 2;
+let newsRotationTimer: number | null = null;
+
+// Start news rotation
+const startNewsRotation = () => {
+  // Clear any existing timer
+  if (newsRotationTimer !== null) {
+    clearInterval(newsRotationTimer);
+  }
+  
+  // Set interval to rotate news
+  newsRotationTimer = setInterval(() => {
+    // Calculate next index, wrapping back to 0 at the end
+    visibleNewsIndex.value = (visibleNewsIndex.value + newsPerView) % newsItems.value.length;
+    
+    // Handle case where we don't have complete pairs at the end
+    if (visibleNewsIndex.value + newsPerView > newsItems.value.length) {
+      visibleNewsIndex.value = 0;
+    }
+  }, 5000) as unknown as number;
+};
+
+// Get visible news items
+const visibleNews = computed(() => {
+  const start = visibleNewsIndex.value;
+  const end = Math.min(start + newsPerView, newsItems.value.length);
+  return newsItems.value.slice(start, end);
+});
 
 // Function to scroll to a section
 const scrollToSection = (sectionId: string) => {
@@ -276,6 +341,7 @@ const isTyping = ref(true);
 
 onMounted(() => {
   startTypingAnimation();
+  startNewsRotation();
 });
 
 const startTypingAnimation = () => {
@@ -301,6 +367,21 @@ const startTypingAnimation = () => {
   
   typeNextChar();
 };
+
+// Function to handle image loading errors for news items
+const handleNewsMediaError = (event: Event) => {
+  const media = event.target as HTMLImageElement;
+  // Replace with fallback image
+  media.src = '/src/assets/images/dukeicon.jpg';
+  media.classList.add('fallback-media');
+};
+
+// Clean up on unmount
+onUnmounted(() => {
+  if (newsRotationTimer !== null) {
+    clearInterval(newsRotationTimer);
+  }
+});
 </script>
 
 <template>
@@ -320,21 +401,74 @@ const startTypingAnimation = () => {
         <h2 class="section-title">Advancing Business Through AI Research & Learning</h2>
         <p class="section-description">AI is transforming business, and Duke University's Fuqua School of Business is leading the way. Discover how AI is integrated into research and learning across all areas of business education.</p>
         
-        <!-- News cards grid -->
-        <div class="news-grid">
-          <el-row :gutter="30">
-            <el-col :span="24" :xs="24" :sm="12" :md="12" :lg="6" v-for="(item, index) in newsItems" :key="index">
-              <el-card class="news-card" shadow="hover">
-                <div class="news-card-content">
-                  <h3 class="news-title">{{ item.title }}</h3>
-                  <p class="news-content">{{ item.content }}</p>
-                  <div class="news-footer">
-                    <span class="news-date">{{ item.date }}</span>
+        <!-- News cards grid with media embeds -->
+        <div class="news-grid" id="news">
+          <div class="news-carousel-container">
+            <div class="news-dots">
+              <span 
+                v-for="(_, i) in Math.ceil(newsItems.length / newsPerView)" 
+                :key="i" 
+                :class="{ 'active-dot': Math.floor(visibleNewsIndex / newsPerView) === i }"
+                @click="visibleNewsIndex = i * newsPerView; scrollToSection('news')"
+                class="news-dot">
+              </span>
+            </div>
+            
+            <el-row :gutter="30">
+              <transition-group name="news-fade">
+                <el-col :span="24" :xs="24" :sm="24" :md="12" :lg="12" v-for="item in visibleNews" :key="item.title + item.date">
+                  <div class="news-card-container">
+                    <el-card class="news-card" shadow="hover">
+                      <div class="news-card-content">
+                        <h3 class="news-title">{{ item.title }}</h3>
+                        <p class="news-content">{{ item.content }}</p>
+                        
+                        <!-- Media embed based on type -->
+                        <div class="news-media-container">
+                          <!-- Image preview with error handling -->
+                          <img v-if="item.mediaType === 'image'" 
+                               :src="item.mediaSrc || '/src/assets/images/dukeicon.jpg'" 
+                               :alt="item.mediaAlt" 
+                               class="news-media-image" 
+                               loading="lazy"
+                               @error="handleNewsMediaError($event)">
+                          
+                          <!-- Video embed with fallback -->
+                          <iframe v-else-if="item.mediaType === 'video'"
+                                  :src="item.mediaSrc"
+                                  class="news-media-video"
+                                  frameborder="0"
+                                  allowfullscreen
+                                  loading="lazy"
+                                  :title="item.title"
+                                  @error="handleNewsMediaError($event)">
+                          </iframe>
+                          <!-- Fallback for empty sources or error loading iframe -->
+                          <img v-if="!item.mediaSrc || item.mediaType === 'video'" 
+                               src="/src/assets/images/dukeicon.jpg" 
+                               :alt="item.mediaAlt" 
+                               class="fallback-media-image" 
+                               loading="lazy"
+                               :style="{ display: !item.mediaSrc ? 'block' : 'none' }">
+                        </div>
+                        
+                        <div class="news-source-info">
+                          <span class="news-source">{{ item.source }}</span>
+                          <span class="news-date">{{ item.date }}</span>
+                        </div>
+                      </div>
+                      
+                      <div class="news-footer">
+                        <a :href="item.url" target="_blank" class="news-link-button">
+                          Read More <span class="arrow-icon">→</span>
+                        </a>
+                      </div>
+                    </el-card>
                   </div>
-                </div>
-              </el-card>
-            </el-col>
-          </el-row>
+                </el-col>
+              </transition-group>
+            </el-row>
+          </div>
         </div>
       </div>
     </section>
@@ -545,7 +679,7 @@ const startTypingAnimation = () => {
   background-color: #f8f9fa;
 }
 
-/* News cards styles */
+/* News cards with media embeds styles */
 .news-grid {
   margin-top: 3rem;
 }
@@ -558,27 +692,35 @@ const startTypingAnimation = () => {
   margin-bottom: 30px;
 }
 
+.news-card-container {
+  height: 100%;
+}
+
 .news-card {
   height: 100%;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   border: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
   
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
   }
 }
 
 .news-card-content {
-  padding: 15px;
-  height: 100%;
+  padding: 20px;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 
 .news-title {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
   color: #012169; /* Duke blue */
@@ -587,22 +729,86 @@ const startTypingAnimation = () => {
 
 .news-content {
   font-size: 0.95rem;
-  color: #555;
+  color: #333;
   line-height: 1.5;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   font-family: 'Helvetica Neue', Arial, sans-serif;
-  flex-grow: 1;
 }
 
-.news-footer {
+.news-media-container {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #f1f1f1;
+  aspect-ratio: 16 / 9;
+  position: relative;
+}
+
+.news-media-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.news-media-video {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.news-source-info {
   display: flex;
-  justify-content: flex-end;
-  margin-top: auto;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+}
+
+.news-source {
+  font-weight: 600;
+  color: #0736A4;
 }
 
 .news-date {
-  font-size: 0.85rem;
-  color: #888;
+  color: #666;
+}
+
+.news-footer {
+  padding: 15px 20px;
+  border-top: 1px solid #eee;
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.news-link-button {
+  display: inline-block;
+  color: #0736A4;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 8px 0;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  
+  .arrow-icon {
+    display: inline-block;
+    margin-left: 4px;
+    transition: transform 0.2s ease;
+  }
+  
+  &:hover {
+    color: #012169;
+    
+    .arrow-icon {
+      transform: translateX(3px);
+    }
+  }
 }
 
 /* Research areas styles */
@@ -910,6 +1116,86 @@ const startTypingAnimation = () => {
   
   .section-container {
     padding: 60px 20px;
+  }
+}
+
+.fallback-media {
+  object-fit: contain !important;
+  padding: 15px;
+  background-color: #f8f9fa;
+}
+
+.fallback-media-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding: 15px;
+  background-color: #f8f9fa;
+  z-index: 0;
+}
+
+/* News cards rotation styles */
+.news-carousel-container {
+  position: relative;
+  padding-bottom: 40px;
+}
+
+.news-dots {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-top: 20px;
+}
+
+.news-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &.active-dot {
+    background-color: #0736A4;
+    transform: scale(1.2);
+  }
+  
+  &:hover {
+    background-color: #bdbdbd;
+  }
+}
+
+.news-fade-enter-active,
+.news-fade-leave-active {
+  transition: all 0.5s ease;
+}
+
+.news-fade-enter-from {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.news-fade-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
+  position: absolute;
+}
+
+/* Make cards larger since we're only showing 2 at a time */
+.news-card {
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .news-carousel-container {
+    padding-bottom: 60px;
   }
 }
 </style>

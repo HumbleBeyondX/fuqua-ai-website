@@ -3,6 +3,9 @@
     <div class="sub-nav-container">
       <ul class="sub-nav-list">
         <li class="sub-nav-item">
+          <a href="#news" class="sub-nav-link" :class="{ 'active': activeSection === 'news' }">News</a>
+        </li>
+        <li class="sub-nav-item">
           <a href="#research-areas" class="sub-nav-link" :class="{ 'active': activeSection === 'research-areas' }">Research Areas</a>
         </li>
         <li class="sub-nav-item">
