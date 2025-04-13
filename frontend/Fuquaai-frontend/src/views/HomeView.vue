@@ -463,7 +463,7 @@ onUnmounted(() => {
                           Read More <span class="arrow-icon">→</span>
                         </a>
                       </div>
-                    </el-card>
+              </el-card>
                   </div>
                 </el-col>
               </transition-group>
@@ -556,12 +556,16 @@ onUnmounted(() => {
   align-items: center;
   margin: 0;
   padding: 0;
+  min-height: 100vh; /* Ensure it takes at least full viewport height */
+  box-sizing: border-box;
 }
 
 /* Hero section styles */
 .hero-section {
   position: relative;
   height: 100vh;
+  width: 100%; 
+  max-width: 100%;
   min-height: 600px;
   display: flex;
   align-items: center;
@@ -574,7 +578,8 @@ onUnmounted(() => {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  width: 100%;
+  left: 0;
+  right: 0;
   
   &::before {
     content: '';
@@ -609,20 +614,26 @@ onUnmounted(() => {
   position: relative;
   z-index: 2;
   max-width: 800px;
+  width: 90%; /* Responsive width */
   padding: 0 20px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero-title {
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem); /* Responsive font size */
   font-weight: 700;
   margin-bottom: 1.5rem;
   line-height: 1.2;
   font-family: 'Helvetica Neue', Arial, sans-serif;
   color: #ffffff;
+  width: 100%;
 }
 
 .hero-subtitle {
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 2vw, 1.1rem); /* Responsive font size */
   margin-bottom: 2.5rem;
   line-height: 1.6;
   font-weight: 400;
@@ -632,11 +643,14 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
 }
 
 .learn-more-btn {
   padding: 10px 30px;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 2vw, 1.1rem); /* Responsive font size */
   font-weight: 600;
   background-color: #0736A4; /* Duke blue */
   border-color: #0736A4;
@@ -649,30 +663,41 @@ onUnmounted(() => {
 
 /* Main content section styles */
 .section-container {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1200px; /* Match the header container max-width */
   margin: 0 auto;
-  padding: 80px 20px;
+  padding: clamp(40px, 6vw, 80px) 1.5rem; /* Use consistent 1.5rem padding to match header */
+  box-sizing: border-box;
 }
 
 .section-title {
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 4vw, 2.5rem); /* Responsive font size */
   font-weight: 700;
   margin-bottom: 2rem;
   color: #012169; /* Duke blue */
   text-align: center;
   font-family: 'Helvetica Neue', Arial, sans-serif;
+  width: 100%;
 }
 
 .section-description {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2vw, 1.2rem); /* Responsive font size */
   line-height: 1.7;
   margin-bottom: 3rem;
-  text-align: center;
+    text-align: center;
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
   color: #333;
   font-family: 'Helvetica Neue', Arial, sans-serif;
+  width: 100%;
+}
+
+.main-content, .research-areas, .featured-courses, .faculty-experts {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 .main-content {
@@ -682,10 +707,15 @@ onUnmounted(() => {
 /* News cards with media embeds styles */
 .news-grid {
   margin-top: 3rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .el-row {
   margin-bottom: 20px !important;
+  width: 100%;
 }
 
 .el-col {
@@ -766,7 +796,7 @@ onUnmounted(() => {
 .news-source-info {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1rem;
+      margin-bottom: 1rem;
   font-size: 0.85rem;
 }
 
@@ -871,12 +901,12 @@ onUnmounted(() => {
   background-color: #fff;
   border-radius: 8px;
   padding: 25px;
-  height: 100%;
+      height: 100%;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
-  
-  &:hover {
-    transform: translateY(-5px);
+
+      &:hover {
+        transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
 }
@@ -966,9 +996,9 @@ onUnmounted(() => {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+        width: 100%;
   height: 100%;
-  object-fit: cover;
+        object-fit: cover;
   object-position: center top;
   transition: transform 0.5s ease;
   z-index: 1;
@@ -1039,84 +1069,173 @@ onUnmounted(() => {
   .hero-section::after {
     background-position: center center;
   }
+  
+  .section-container {
+    width: 100%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .el-col {
+    margin-bottom: 20px;
+  }
+  
+  .news-card-container {
+    max-width: 100%;
+  }
+  
+  .research-area-card,
+  .ai-approach-card,
+  .faculty-card {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 768px) {
   .hero-section {
     min-height: 500px;
+    height: 90vh;
   }
   
   .hero-section::after {
     background-position: center center;
-  }
-  
-  .hero-title {
-    font-size: 2.5rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-section {
-    min-height: 450px;
-  }
-  
-  .hero-title {
-    font-size: 2rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .learn-more-btn {
-    padding: 10px 20px;
-    font-size: 1rem;
-  }
-}
-
-/* For extra-wide screens */
-@media (min-width: 2000px) {
-  .hero-section::after {
-    background-size: 100% auto;
-    background-position: center top;
-  }
-}
-
-/* For portrait orientation on mobile devices */
-@media (max-width: 768px) and (orientation: portrait) {
-  .hero-section::after {
-    background-size: cover;
-    background-position: center center;
-  }
-}
-
-/* For landscape orientation on mobile devices */
-@media (max-width: 900px) and (orientation: landscape) {
-  .hero-section {
-    min-height: 450px;
-  }
-  
-  .hero-section::after {
-    background-size: cover;
-    background-position: center center;
-  }
-}
-
-/* General responsive styling for content sections */
-@media (max-width: 768px) {
-  .section-title {
-    font-size: 2rem;
   }
   
   .section-container {
-    padding: 60px 20px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
+  
+  .news-card-content {
+    padding: 15px;
+  }
+  
+  .news-media-container {
+    aspect-ratio: 16 / 10; /* Adjusted for mobile */
+  }
+  
+  .news-footer {
+    padding: 12px 15px;
+  }
+  
+  .research-grid,
+  .ai-approach-grid,
+  .faculty-grid {
+    margin-top: 2rem;
+  }
+  
+  .news-carousel-container {
+    padding-bottom: 60px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-section {
+    min-height: 450px;
+  }
+  
+  .section-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .news-dot {
+    width: 10px;
+    height: 10px;
+    margin: 0 4px;
+  }
+  
+  .faculty-col {
+    width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  
+  .faculty-name {
+    font-size: 1rem;
+  }
+  
+  .faculty-expertise {
+    font-size: 0.85rem;
+  }
+}
+
+/* For extra-small screens */
+@media (max-width: 380px) {
+  .hero-title {
+    margin-top: 50px;
+  }
+  
+  .hero-subtitle {
+    min-height: 100px;
+  }
+  
+  .news-title {
+      font-size: 1.1rem;
+  }
+  
+  .news-content {
+    font-size: 0.85rem;
+  }
+  
+  .research-area-title {
+    font-size: 1.2rem;
+  }
+  
+  .research-area-content {
+    font-size: 0.9rem;
+  }
+}
+
+/* For landscape mode on small devices */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-section {
+    min-height: 400px;
+    height: auto;
+    padding: 60px 0;
+  }
+  
+  .hero-title {
+    margin-bottom: 10px;
+  }
+  
+  .hero-subtitle {
+    min-height: 60px;
+    margin-bottom: 20px;
+  }
+}
+
+/* Fix for Safari and iOS devices */
+@supports (-webkit-touch-callout: none) {
+  .hero-section {
+    height: -webkit-fill-available;
+  }
+}
+
+/* Fix for notched phones */
+@supports (padding: max(0px)) {
+  .hero-section {
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+}
+
+/* Eliminate any potential scroll issues on all browsers */
+html, body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
 .fallback-media {
@@ -1141,6 +1260,7 @@ onUnmounted(() => {
 .news-carousel-container {
   position: relative;
   padding-bottom: 40px;
+  width: 100%;
 }
 
 .news-dots {
@@ -1190,12 +1310,20 @@ onUnmounted(() => {
 
 /* Make cards larger since we're only showing 2 at a time */
 .news-card {
-  margin-bottom: 30px;
-}
+      margin-bottom: 30px;
+    }
 
 @media (max-width: 768px) {
   .news-carousel-container {
     padding-bottom: 60px;
+  }
+}
+
+/* Fix for container centering */
+@media (min-width: 1201px) {
+  .section-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 }
 </style>

@@ -7,14 +7,19 @@ import HeroSection from '@/components/HeroSection.vue'
 import NewsEventsSection from '@/components/NewsEventsSection.vue'
 import TheFooter from './components/TheFooter.vue'
 import BackToTop from './components/BackToTop.vue'
-import { RouterView } from 'vue-router'
+import { RouterView, useRoute } from 'vue-router'
+import { computed } from 'vue'
+
+// Determine if current route is home page
+const route = useRoute()
+const isHomePage = computed(() => route.path === '/' || route.path === '/home')
 </script>
 
 <template>
   <div class="app-wrapper">
     <TheHeader />
-    <SubNavigation />
-    <main class="main-content">
+    <SubNavigation v-if="isHomePage" />
+    <main class="main-content" :class="{ 'no-subnav': !isHomePage }">
       <RouterView />
     </main>
     <TheFooter />
@@ -48,6 +53,10 @@ html, body {
   flex: 1;
   width: 100%;
   padding-top: 70px; /* Space for main nav */
+}
+
+.main-content.no-subnav {
+  padding-top: 70px; /* Just space for main nav when no subnav is present */
 }
 
 /* Add scroll padding to account for fixed headers */

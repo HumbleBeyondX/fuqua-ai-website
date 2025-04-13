@@ -34,6 +34,7 @@ const handleScroll = () => {
   
   // Determine active section based on scroll position
   const sections = [
+    { id: 'news', element: document.getElementById('news') },
     { id: 'research-areas', element: document.getElementById('research-areas') },
     { id: 'featured-courses', element: document.getElementById('featured-courses') },
     { id: 'faculty-experts', element: document.getElementById('faculty-experts') }
