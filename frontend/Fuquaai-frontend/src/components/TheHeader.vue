@@ -36,7 +36,7 @@
 
 <style scoped lang="scss">
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 100;
   background-color: rgba(255, 255, 255, 0.98);
@@ -46,6 +46,7 @@
   width: 100%;
   left: 0;
   right: 0;
+  transition: transform 0.3s ease;
 }
 
 .header-container {

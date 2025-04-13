@@ -5,6 +5,7 @@ import TheHeader from './components/TheHeader.vue'
 import HeroSection from '@/components/HeroSection.vue'
 import NewsEventsSection from '@/components/NewsEventsSection.vue'
 import TheFooter from './components/TheFooter.vue'
+import BackToTop from './components/BackToTop.vue'
 import { RouterView } from 'vue-router'
 </script>
 
@@ -15,6 +16,7 @@ import { RouterView } from 'vue-router'
       <RouterView />
     </main>
     <TheFooter />
+    <BackToTop />
   </div>
 </template>
 
@@ -43,5 +45,6 @@ html, body {
 .main-content {
   flex: 1;
   width: 100%;
+  padding-top: 70px; /* Adjust based on your header height */
 }
 </style>
