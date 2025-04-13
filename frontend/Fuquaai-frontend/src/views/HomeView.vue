@@ -113,7 +113,7 @@ const facultyExperts = ref([
   },
   { 
     name: 'Saša Pekeč', 
-    expertise: 'Market Design, Algorithmic Decision-Making',
+    expertise: 'Market Design, Algorithmic Decision-Making, Platform Economics',
     image: '/src/assets/images/faculty/sasa-pekec.jpg',
     url: 'https://www.fuqua.duke.edu/faculty/aleksandar-pekec'
   },
@@ -162,85 +162,85 @@ const facultyExperts = ref([
 
   {
     name:'Jeannette Song',
-    expertise: 'AI in Marketing',
+    expertise: 'E-commerce logistics, staffing optimization, inventory/pricing',
     image: '/src/assets/images/faculty/jeannette-song.jpg',
     url: 'https://www.fuqua.duke.edu/faculty/jeannette-song'
   },
   {
     name:'Kevin Shang',
-    expertise: 'AI in Business Optimization',
+    expertise: 'Inventory Management with AI',
     image: '/src/assets/images/faculty/kevin-shang.jpg',
     url: 'https://www.fuqua.duke.edu/faculty/kevin-shang'
   },
   {
     name:'Sharique Hasan',
-    expertise: 'AI in Business Optimization',
+    expertise: 'Innovation and Deep Tech Commercialization',
     image: '/src/assets/images/faculty/sharique-hasan.jpg',
     url: 'https://www.fuqua.duke.edu/faculty/sharique-hasan'
   },
   {
     name:'Wesley Cohen',
-    expertise: 'AI in Business Optimization',
+    expertise: 'Innovation and Deep Tech Commercialization',
     image: '/src/assets/images/faculty/wesley-cohen.jpg',
     url: 'https://www.fuqua.duke.edu/faculty/wesley-cohen'
   },
   {
     name:'Ronnie Chatterji',
-    expertise: 'AI in Business Optimization',
+    expertise: 'Chief Economist at OpenAI',
     image: '/src/assets/images/faculty/aaron-chatterji.jpeg',
     url: 'https://www.fuqua.duke.edu/faculty/aaron-chatterji'
   },
   {
     name:'Jack Soll',
-    expertise: 'AI in Business Optimization',
+    expertise: 'Human AI Collaboration',
     image: '/src/assets/images/faculty/jack-soll.jpg',
     url: 'https://www.fuqua.duke.edu/faculty/jack-soll'
   },
   {
     name:'Richard Larrick',
-    expertise: 'AI in Business Optimization',
+    expertise: 'Human AI Collaboration',
     image: '/src/assets/images/faculty/richard-larrick.jpg',
     url: 'https://www.fuqua.duke.edu/faculty/richard-larrick'
   },
   {
     name:'Ashleigh Rosette',
-    expertise: 'AI in Business Optimization',
+    expertise: 'Bias and Fairness in AI',
     image: '/src/assets/images/faculty/ashleigh-rosette.jpg',
     url: 'https://www.fuqua.duke.edu/faculty/ashleigh-rosette'
   },
   {
     name:'Srinivas Tunuguntla',
-    expertise: 'AI in Business Optimization',
+    expertise: 'Marketing Analytics and Digital Advertising',
     image: '/src/assets/images/faculty/srinivas-tunuguntla.jpg',
     url: 'https://www.fuqua.duke.edu/faculty/srinivas-tunuguntla'
   },
   {
     name:'Manuel Adelino',
-    expertise: 'AI in Business Optimization',
+    expertise: 'Finance and Venture Capital',
     image: '/src/assets/images/faculty/manuel-adelino.jpg',
     url: 'https://www.fuqua.duke.edu/faculty/manuel-adelino'
   },
   {
     name:'Jamie Jones',
-    expertise: 'AI in Business Optimization',
+    expertise: 'Innovation & Entrepreneurship',
     image: '/src/assets/images/faculty/jamie-jones.jpg',
     url: 'https://www.fuqua.duke.edu/faculty/jamie-jones'
   },
   {
     name:'Kimberly Wade-Benzoni',
-    expertise: 'AI in Business Optimization',
+    expertise: 'AI and Legacy',
     image: '/src/assets/images/faculty/kimberly-wade-benzoni.jpg',
     url: 'https://www.fuqua.duke.edu/faculty/kimberly-wade-benzoni'
   },
   {
     name:'Peng Sun',
-    expertise: 'AI in Business Optimization',
+    expertise: 'AI and Mechanism Design',
     image: '/src/assets/images/faculty/peng-sun.jpg',
     url: 'https://www.fuqua.duke.edu/faculty/peng-sun'
   },
   {
     name:'Campbell Harvey',
-    expertise: 'AI in Business Optimization',
+    expertise: 'AI in Decentralized Finance, Asset Allocation',
     image: '/src/assets/images/faculty/campbell-harvey.jpg',
     url: 'https://www.fuqua.duke.edu/faculty/campbell-harvey'
   }
@@ -674,18 +674,20 @@ const getInitials = (name: string) => {
   display: block;
   text-decoration: none;
   height: 100%;
-  // color: inherit;
+  color: inherit;
   cursor: pointer;
   
   &:hover, &:focus {
     text-decoration: none;
     color: inherit;
     outline: none;
+    background-color: transparent !important;
   }
   
   &:hover .faculty-card {
     transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    background-color: #f8f9fa; /* Keep the same background color on hover */
   }
   
   &:hover .faculty-image {
@@ -756,8 +758,8 @@ const getInitials = (name: string) => {
 .faculty-info::after {
   content: '';
   position: absolute;
-  right: 12px;
-  bottom: 12px;
+  right: 10px;
+  top: 18px; /* Align with the professor's name */
   width: 8px;
   height: 8px;
   border-top: 2px solid #012169;
@@ -769,8 +771,7 @@ const getInitials = (name: string) => {
 
 .faculty-card-link:hover .faculty-info::after {
   opacity: 1;
-  right: 10px;
-
+  right: 8px; /* Adjust this if needed */
 }
 
 .faculty-name {

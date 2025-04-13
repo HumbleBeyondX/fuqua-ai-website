@@ -3,6 +3,9 @@
     <div class="footer-container">
       <div class="footer-info">
         <div class="university-info">
+          <div class="footer-logo">
+            <img src="/src/assets/images/Fuqualogo.png" alt="Fuqua School of Business" class="fuqua-logo">
+          </div>
           <h3 class="footer-heading">Duke University</h3>
           <h3 class="footer-heading">Fuqua School of Business</h3>
           <p class="address">100 Fuqua Drive, Durham, NC 27708</p>
@@ -45,7 +48,7 @@ import { Message, ChatRound, Connection } from '@element-plus/icons-vue';
   justify-content: space-between;
   align-items: center;
   
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     flex-direction: column;
     text-align: center;
   }
@@ -55,6 +58,15 @@ import { Message, ChatRound, Connection } from '@element-plus/icons-vue';
   @media (max-width: 768px) {
     margin-bottom: 20px;
   }
+}
+
+.footer-logo {
+  margin-bottom: 10px;
+}
+
+.fuqua-logo {
+  height: 100px;
+  width: auto;
 }
 
 .footer-heading {
@@ -93,6 +105,13 @@ import { Message, ChatRound, Connection } from '@element-plus/icons-vue';
       font-size: 20px;
       color: #fff;
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-logo {
+    display: flex;
+    justify-content: center;
   }
 }
 </style> 
