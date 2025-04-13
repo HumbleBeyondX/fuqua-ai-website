@@ -87,15 +87,166 @@ const aiApproachCategories = ref([
 
 // Faculty experts
 const facultyExperts = ref([
-  { name: 'Alessandro Arlotto', expertise: 'Election Analytics, Machine Learning' },
-  { name: 'Alex Belloni', expertise: 'Predictive Models, Causal Inference' },
-  { name: 'David Brown', expertise: 'AI in Energy and Climate' },
-  { name: 'Ali Makhdoumi', expertise: 'Data Markets, Privacy, AI Policy' },
-  { name: 'Saša Pekeč', expertise: 'Market Design, Algorithmic Decision-Making' },
-  { name: 'Anqi Zhao', expertise: 'Causal Inference, Machine Learning' },
-  { name: 'Jiaming Xu', expertise: 'Machine Learning, Networks' },
-  { name: 'Yehua Wei', expertise: 'E-Commerce Optimization, Machine Learning' }
+  { 
+    name: 'Alessandro Arlotto', 
+    expertise: 'Election Analytics, Machine Learning',
+    image: '/src/assets/images/faculty/alessandro-arlotto.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/alessandro-arlotto'
+  },
+  { 
+    name: 'Alex Belloni', 
+    expertise: 'Predictive Models, Causal Inference',
+    image: '/src/assets/images/faculty/alex-belloni.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/alexandre-belloni'
+  },
+  { 
+    name: 'David Brown', 
+    expertise: 'AI in Energy and Climate',
+    image: '/src/assets/images/faculty/david-brown.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/david-brown'
+  },
+  { 
+    name: 'Ali Makhdoumi', 
+    expertise: 'Data Markets, Privacy, AI Policy',
+    image: '/src/assets/images/faculty/ali-makhdoumi.jpeg',
+    url: 'https://www.fuqua.duke.edu/faculty/ali-makhdoumi'
+  },
+  { 
+    name: 'Saša Pekeč', 
+    expertise: 'Market Design, Algorithmic Decision-Making',
+    image: '/src/assets/images/faculty/sasa-pekec.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/aleksandar-pekec'
+  },
+  { 
+    name: 'Anqi Zhao', 
+    expertise: 'Causal Inference, Machine Learning',
+    image: '/src/assets/images/faculty/anqi-zhao.png',
+    url: 'https://www.fuqua.duke.edu/faculty/anqi-zhao'
+  },
+  { 
+    name: 'Jiaming Xu', 
+    expertise: 'Machine Learning, Networks',
+    image: '/src/assets/images/faculty/jiaming-xu.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/jiaming-xu'
+  },
+  { 
+    name: 'Yehua Wei', 
+    expertise: 'E-Commerce Optimization, Machine Learning',
+    image: '/src/assets/images/faculty/yehua-wei.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/yehua-wei'
+  },
+  {
+    name:'Tong Guo',
+    expertise: 'Misinformation,Beliefs',
+    image: '/src/assets/images/faculty/tong-guo.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/tong-guo'
+  },
+  {
+    name:'Carl Mela',
+    expertise: 'Marketing Technology',
+    image: '/src/assets/images/faculty/carl-mela.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/carl-mela'
+  },
+  {
+    name:'Bora Keskin',
+    expertise: 'AI in Value Chain Management',
+    image: '/src/assets/images/faculty/bora-keskin.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/bora-keskin'
+  },
+  {
+    name:'Fernando Bernstein',
+    expertise: 'Customer Preference, Forecasting',
+    image: '/src/assets/images/faculty/fernando-bernstein.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/fernando-bernstein'
+  },
+
+  {
+    name:'Jeannette Song',
+    expertise: 'AI in Marketing',
+    image: '/src/assets/images/faculty/jeannette-song.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/jeannette-song'
+  },
+  {
+    name:'Kevin Shang',
+    expertise: 'AI in Business Optimization',
+    image: '/src/assets/images/faculty/kevin-shang.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/kevin-shang'
+  },
+  {
+    name:'Sharique Hasan',
+    expertise: 'AI in Business Optimization',
+    image: '/src/assets/images/faculty/sharique-hasan.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/sharique-hasan'
+  },
+  {
+    name:'Wesley Cohen',
+    expertise: 'AI in Business Optimization',
+    image: '/src/assets/images/faculty/wesley-cohen.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/wesley-cohen'
+  },
+  {
+    name:'Ronnie Chatterji',
+    expertise: 'AI in Business Optimization',
+    image: '/src/assets/images/faculty/aaron-chatterji.jpeg',
+    url: 'https://www.fuqua.duke.edu/faculty/aaron-chatterji'
+  },
+  {
+    name:'Jack Soll',
+    expertise: 'AI in Business Optimization',
+    image: '/src/assets/images/faculty/jack-soll.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/jack-soll'
+  },
+  {
+    name:'Richard Larrick',
+    expertise: 'AI in Business Optimization',
+    image: '/src/assets/images/faculty/richard-larrick.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/richard-larrick'
+  },
+  {
+    name:'Ashleigh Rosette',
+    expertise: 'AI in Business Optimization',
+    image: '/src/assets/images/faculty/ashleigh-rosette.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/ashleigh-rosette'
+  },
+  {
+    name:'Srinivas Tunuguntla',
+    expertise: 'AI in Business Optimization',
+    image: '/src/assets/images/faculty/srinivas-tunuguntla.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/srinivas-tunuguntla'
+  },
+  {
+    name:'Manuel Adelino',
+    expertise: 'AI in Business Optimization',
+    image: '/src/assets/images/faculty/manuel-adelino.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/manuel-adelino'
+  },
+  {
+    name:'Jamie Jones',
+    expertise: 'AI in Business Optimization',
+    image: '/src/assets/images/faculty/jamie-jones.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/jamie-jones'
+  },
+  {
+    name:'Kimberly Wade-Benzoni',
+    expertise: 'AI in Business Optimization',
+    image: '/src/assets/images/faculty/kimberly-wade-benzoni.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/kimberly-wade-benzoni'
+  },
+  {
+    name:'Peng Sun',
+    expertise: 'AI in Business Optimization',
+    image: '/src/assets/images/faculty/peng-sun.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/peng-sun'
+  },
+  {
+    name:'Campbell Harvey',
+    expertise: 'AI in Business Optimization',
+    image: '/src/assets/images/faculty/campbell-harvey.jpg',
+    url: 'https://www.fuqua.duke.edu/faculty/campbell-harvey'
+  }
+
 ]);
+
 
 // Function to scroll to a section
 const scrollToSection = (sectionId: string) => {
@@ -103,6 +254,19 @@ const scrollToSection = (sectionId: string) => {
   if (element) {
     element.scrollIntoView({ behavior: 'smooth' });
   }
+};
+
+// Function to handle image loading errors
+const handleImageError = (event: Event) => {
+  const img = event.target as HTMLImageElement;
+  // Hide the image by setting opacity to 0
+  img.style.opacity = "0";
+};
+
+// Function to get initials from faculty name
+const getInitials = (name: string) => {
+  const parts = name.split(' ');
+  return parts.map(part => part.charAt(0)).join('');
 };
 </script>
 
@@ -143,7 +307,7 @@ const scrollToSection = (sectionId: string) => {
     </section>
 
     <!-- Research Areas section with alternating background -->
-    <section class="research-areas">
+    <section class="research-areas" id="research-areas">
       <div class="section-container">
         <h2 class="section-title">Fuqua Researchers are Driving Applications of AI to all Areas of Business</h2>
         
@@ -159,7 +323,7 @@ const scrollToSection = (sectionId: string) => {
     </section>
 
     <!-- Featured Courses section -->
-    <section class="featured-courses">
+    <section class="featured-courses" id="featured-courses">
       <div class="section-container">
         <h2 class="section-title">The Duke Fuqua Approach to AI</h2>
         <p class="section-description">At Fuqua, AI is not confined to a single course or specialization. It is woven throughout the curriculum, integrated into the way we teach analytics, decision-making, strategy, operations, finance, accounting, marketing, and leadership.</p>
@@ -180,17 +344,34 @@ const scrollToSection = (sectionId: string) => {
     </section>
 
     <!-- Faculty Experts section -->
-    <section class="faculty-experts">
+    <section class="faculty-experts" id="faculty-experts">
       <div class="section-container">
         <h2 class="section-title">AI@Fuqua Faculty AI Experts</h2>
         
         <div class="faculty-grid">
           <el-row :gutter="30">
             <el-col :span="24" :xs="24" :sm="12" :md="8" :lg="6" v-for="(faculty, index) in facultyExperts" :key="index" class="faculty-col">
-              <div class="faculty-card">
-                <h3 class="faculty-name">{{ faculty.name }}</h3>
-                <p class="faculty-expertise">{{ faculty.expertise }}</p>
-              </div>
+              <a :href="faculty.url" target="_blank" rel="noopener noreferrer" class="faculty-card-link">
+                <div class="faculty-card">
+                  <div class="faculty-image-container">
+                    <img 
+                      :src="faculty.image" 
+                      :alt="faculty.name" 
+                      class="faculty-image"
+                      @error="handleImageError($event)"
+                    >
+                    <div class="faculty-image-overlay">
+                      <div class="faculty-initials">
+                        {{ getInitials(faculty.name) }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="faculty-info">
+                    <h3 class="faculty-name">{{ faculty.name }}</h3>
+                    <p class="faculty-expertise">{{ faculty.expertise }}</p>
+                  </div>
+                </div>
+              </a>
             </el-col>
           </el-row>
         </div>
@@ -489,18 +670,107 @@ const scrollToSection = (sectionId: string) => {
   margin-bottom: 30px;
 }
 
+.faculty-card-link {
+  display: block;
+  text-decoration: none;
+  height: 100%;
+  // color: inherit;
+  cursor: pointer;
+  
+  &:hover, &:focus {
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+  }
+  
+  &:hover .faculty-card {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  &:hover .faculty-image {
+    transform: scale(1.05);
+  }
+  
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
 .faculty-card {
   background-color: #f8f9fa;
-  border-radius: 6px;
-  padding: 20px;
-  min-height: 120px;
+  border-radius: 8px;
+  padding: 0;
   height: 100%;
   transition: all 0.3s ease;
-  
-  &:hover {
-    background-color: #e9effb;
-    transform: translateY(-5px);
-  }
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.faculty-image-container {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%; /* Creates a square aspect ratio */
+  position: relative;
+  overflow: hidden;
+  background-color: #e9effb;
+}
+
+.faculty-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.5s ease;
+  z-index: 1;
+}
+
+.faculty-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #012169; /* Duke blue */
+  z-index: 0; /* Behind the image */
+}
+
+.faculty-initials {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #fff;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.faculty-info {
+  padding: 15px;
+  position: relative;
+}
+
+.faculty-info::after {
+  content: '';
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #012169;
+  border-right: 2px solid #012169;
+  transform: rotate(45deg);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.faculty-card-link:hover .faculty-info::after {
+  opacity: 1;
+  right: 10px;
+
 }
 
 .faculty-name {
@@ -509,6 +779,7 @@ const scrollToSection = (sectionId: string) => {
   margin-bottom: 0.5rem;
   color: #012169; /* Duke blue */
   font-family: 'Helvetica Neue', Arial, sans-serif;
+  padding-right: 15px; /* Make space for the arrow */
 }
 
 .faculty-expertise {

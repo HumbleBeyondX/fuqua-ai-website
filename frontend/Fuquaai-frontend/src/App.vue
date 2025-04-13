@@ -2,6 +2,7 @@
 import { Location, Message, Link } from '@element-plus/icons-vue'
 import { ElConfigProvider } from 'element-plus'
 import TheHeader from './components/TheHeader.vue'
+import SubNavigation from './components/SubNavigation.vue'
 import HeroSection from '@/components/HeroSection.vue'
 import NewsEventsSection from '@/components/NewsEventsSection.vue'
 import TheFooter from './components/TheFooter.vue'
@@ -12,6 +13,7 @@ import { RouterView } from 'vue-router'
 <template>
   <div class="app-wrapper">
     <TheHeader />
+    <SubNavigation />
     <main class="main-content">
       <RouterView />
     </main>
@@ -45,6 +47,11 @@ html, body {
 .main-content {
   flex: 1;
   width: 100%;
-  padding-top: 70px; /* Adjust based on your header height */
+  padding-top: 70px; /* Space for main nav */
+}
+
+/* Add scroll padding to account for fixed headers */
+html {
+  scroll-padding-top: 120px; /* Main nav + sub nav height */
 }
 </style>
